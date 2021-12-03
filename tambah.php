@@ -1,3 +1,31 @@
+<?php
+//koneksi data base yang beraada di file koneksi
+require 'koneksi.php';
+// tekan tombol submit apakah berhasil
+if (isset($_POST["submit"])) {
+
+    //cara cek apakah data berhasil di tambahkan atau tidak
+    if (tambah($_POST) > 0) {
+        echo "
+            <script>
+                alert('data berhasil di tambahkan');
+                document.location.href = 'buku_tamu.php';
+            </script>
+        ";
+    } else {
+        echo "
+        <script>
+            alert('data gagal di tambahkan');
+            document.location.href = 'tambah.php';
+        </script>
+    ";
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -188,91 +216,51 @@
         <!--//app-sidepanel-->
     </header>
     <!--//app-header-->
-
     <div class="app-wrapper">
-
-        <div class="app-content pt-3 p-md-3 p-lg-4">
-            <div class="container-xl">
-
-                <h1 class="app-page-title">Overview</h1>
-
-                <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
-                    <div class="inner">
-                        <div class="app-card-body p-3 p-lg-4">
-                            <h3 class="mb-3">Welcome, developer!</h3>
-                            <div class="row gx-5 gy-3">
-                                <div class="col-12 col-lg-9">
-
-                                    <div>Portal is a free Bootstrap 5 admin dashboard template. The design is simple,
-                                        clean and modular so it's a great base for building any modern web app.</div>
-                                </div>
-                                <!--//col-->
-                                <div class="col-12 col-lg-3">
-                                    <a class="btn app-btn-primary" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-arrow-down me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                            <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z" />
-                                        </svg>Free Download</a>
-                                </div>
-                                <!--//col-->
-                            </div>
-                            <!--//row-->
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="container">
+            <div style="margin-top: 60px;" class="row justify-content-md-center">
+                <div class="col-10">
+                    <!-- tambah data -->
+                    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                        <div class="col-md-6">
+                            <label for="inputEmail4" class="form-label">Nama Lengkap</label>
+                            <input type="text" name="id_nama" class="form-control" id="inputEmail4" autocomplete="off" autofocus required>
                         </div>
-                        <!--//app-card-body-->
-
-                    </div>
-                    <!--//inner-->
-                </div>
-                <!--//app-card-->
-
-                <!--//row-->
-                <div class="row g-4 mb-4">
-                    <div class>
-                        <div class="app-card app-card-chart h-100 shadow-sm">
-                            <div class="app-card-header p-3">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-auto">
-                                        <h4 class="app-card-title">Line Chart Example</h4>
-                                    </div>
-                                    <!--//col-->
-                                    <div class="col-auto">
-                                        <div class="card-header-action">
-                                            <a href="#">More charts</a>
-                                        </div>
-                                        <!--//card-header-actions-->
-                                    </div>
-                                    <!--//col-->
-                                </div>
-                                <!--//row-->
-                            </div>
-                            <!--//app-card-header-->
-                            <div class="app-card-body p-3 p-lg-4">
-                                <div class="mb-3 d-flex">
-                                    <select class="form-select form-select-sm ms-auto d-inline-flex w-auto">
-                                        <option value="1" selected>This week</option>
-                                        <option value="2">Today</option>
-                                        <option value="3">This Month</option>
-                                        <option value="3">This Year</option>
-                                    </select>
-                                </div>
-                                <div class="chart-container">
-                                    <canvas id="canvas-barchart"></canvas>
-                                </div>
-                            </div>
-                            <!--//app-card-body-->
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label">Jenis Kelamin</label>
+                            <select id="inputState" name="jk" class="form-select" required>
+                                <option selected>Pilihan...</option>
+                                <option value="laki-laki">LAKI-LAKI</option>
+                                <option value="Perempuan">PEREMPUAN</option>
+                            </select>
                         </div>
-                        <!--//app-card-->
-                    </div>
 
+                        <div class="col-md-6">
+                            <label for="jabatan" class="form-label">Jabatan</label>
+                            <input type="text" name="jabatan" class="form-control" id="jabatan" autocomplete="off" placeholder="jabatan...">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="alamat" class="form-label">alamat</label>
+                            <input type="text" name="alamat" class="form-control" id="alamat" autocomplete="off" placeholder="alamat..." required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="No Telfon" class="form-label">No Telepon</label>
+                            <input type="text" name="notlp" class="form-control" id="No Telfon" autocomplete="off" placeholder="No Telepon...." required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Tanggal berkunjung" class="form-label">Tanggal Berkunjung</label>
+                            <input type="date" name="id_tglb" class="form-control" id="Tanggal berkunjung" required>
+                        </div>
+                        <div class="col">
+                            <label for="Keperluan" class="form-label">Keperluan</label>
+                            <textarea class="form-control" name="keperluan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-success btn-lg text-white">Submit</button>
+                        <button type="reset" class="btn btn-secondary btn-lg">Reset</button>
+                    </form>
                 </div>
-                <!--//row-->
-
             </div>
-            <!--//container-fluid-->
         </div>
-        <!--//app-content-->
-
         <footer class="app-footer">
             <div class="container text-center py-3">
                 <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
@@ -281,7 +269,11 @@
 
             </div>
         </footer>
-        <!--//app-footer-->
+    </div>
+
+    <!--//app-content-->
+
+    <!--//app-footer-->
 
     </div>
     <!--//app-wrapper-->

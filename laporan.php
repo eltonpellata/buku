@@ -1,3 +1,23 @@
+<?php
+//koneksi data base yang beraada di file koneksi
+require 'koneksi.php';
+//munculkan data base dengan fungsion yang ad di file koneksi
+$daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
+
+//$daftar = query("SELECT * FROM tb_pendaftaran ORDER BY id ASC");
+// ACS itu megurutkan dari id yang kecil sampai ke besar
+//$daftar = query("SELECT * FROM tb_pendaftaran ORDER BY id DESC");
+// DESC itu mengurutkan dari yang besar ke kecil
+
+//tombol cari
+// if( isset($_POST["submit"]) ){
+//   $daftar = cari ($_POST["keyword"]);
+
+// }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -194,109 +214,92 @@
         <div class="app-content pt-3 p-md-3 p-lg-4">
             <div class="container-xl">
 
-                <h1 class="app-page-title">Overview</h1>
+                <h1 class="app-page-title">Laporan Buku Tamu</h1>
 
-                <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
-                    <div class="inner">
-                        <div class="app-card-body p-3 p-lg-4">
-                            <h3 class="mb-3">Welcome, developer!</h3>
-                            <div class="row gx-5 gy-3">
-                                <div class="col-12 col-lg-9">
-
-                                    <div>Portal is a free Bootstrap 5 admin dashboard template. The design is simple,
-                                        clean and modular so it's a great base for building any modern web app.</div>
-                                </div>
-                                <!--//col-->
-                                <div class="col-12 col-lg-3">
-                                    <a class="btn app-btn-primary" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-arrow-down me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                            <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z" />
-                                        </svg>Free Download</a>
-                                </div>
-                                <!--//col-->
-                            </div>
-                            <!--//row-->
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <!--//app-card-body-->
-
-                    </div>
-                    <!--//inner-->
-                </div>
                 <!--//app-card-->
 
-                <!--//row-->
-                <div class="row g-4 mb-4">
-                    <div class>
-                        <div class="app-card app-card-chart h-100 shadow-sm">
-                            <div class="app-card-header p-3">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-auto">
-                                        <h4 class="app-card-title">Line Chart Example</h4>
-                                    </div>
-                                    <!--//col-->
-                                    <div class="col-auto">
-                                        <div class="card-header-action">
-                                            <a href="#">More charts</a>
-                                        </div>
-                                        <!--//card-header-actions-->
-                                    </div>
-                                    <!--//col-->
+                <div class="tab-content" id="orders-table-tab-content">
+                    <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+                        <div class="app-card app-card-orders-table shadow-sm mb-5">
+                            <div class="app-card-body">
+                                <div class="table-responsive-md">
+                                    <table class="table app-table-hover table-bordered mb-0 text-left">
+                                        <thead>
+                                            <tr>
+                                                <th class="cell">NO</th>
+                                                <th class="cell">Nama tamu</th>
+                                                <th class="cell">Jenis Kelamin</th>
+                                                <th class="cell">Jabatan</th>
+                                                <th class="cell">alamat</th>
+                                                <th class="cell">No.Telpon</th>
+                                                <th class="cell">Keperluan</th>
+                                                <th class="cell">Tgl/Berkunjung</th>
+                                                <th class="cell">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($daftar as $row) : ?>
+                                                <tr>
+                                                    <th><?= $i; ?></th>
+                                                    <td class="cell"> <?= $row["id_nama"]; ?></td>
+                                                    <td class="cell"><?= $row["jk"]; ?></td>
+                                                    <td class="cell"><?= $row["jabatan"]; ?></td>
+                                                    <td class="cell"><?= $row["alamat"]; ?></td>
+                                                    <td class="cell"><?= $row["notlp"]; ?></td>
+                                                    <td class="cell"><?= $row["keperluan"]; ?></td>
+                                                    <td class="cell"><?= $row["id_tglb"]; ?></td>
+                                                    <td class="cell">
+                                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                                                                <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z" />
+                                                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                            </svg></a></a> |
+                                                        <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');"><i class="bi bi-trash-fill "></i></a>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <!--//row-->
-                            </div>
-                            <!--//app-card-header-->
-                            <div class="app-card-body p-3 p-lg-4">
-                                <div class="mb-3 d-flex">
-                                    <select class="form-select form-select-sm ms-auto d-inline-flex w-auto">
-                                        <option value="1" selected>This week</option>
-                                        <option value="2">Today</option>
-                                        <option value="3">This Month</option>
-                                        <option value="3">This Year</option>
-                                    </select>
-                                </div>
-                                <div class="chart-container">
-                                    <canvas id="canvas-barchart"></canvas>
-                                </div>
+                                <!--//table-responsive-->
+
                             </div>
                             <!--//app-card-body-->
                         </div>
-                        <!--//app-card-->
+                        <!--//tab-content-->
+
                     </div>
-
+                    <!--//container-fluid-->
                 </div>
-                <!--//row-->
+                <!--//app-content-->
+
+                <footer class="app-footer">
+                    <div class="container text-center py-3">
+                        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+                        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by
+                            <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a>
+                            for
+                            developers</small>
+
+                    </div>
+                </footer>
+                <!--//app-footer-->
 
             </div>
-            <!--//container-fluid-->
-        </div>
-        <!--//app-content-->
-
-        <footer class="app-footer">
-            <div class="container text-center py-3">
-                <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-                <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
-                    developers</small>
-
-            </div>
-        </footer>
-        <!--//app-footer-->
-
-    </div>
-    <!--//app-wrapper-->
+            <!--//app-wrapper-->
 
 
-    <!-- Javascript -->
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+            <!-- Javascript -->
+            <script src="assets/plugins/popper.min.js"></script>
+            <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script>
-    <script src="assets/js/index-charts.js"></script>
+            <!-- Charts JS -->
+            <script src="assets/plugins/chart.js/chart.min.js"></script>
+            <script src="assets/js/index-charts.js"></script>
 
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script>
+            <!-- Page Specific JS -->
+            <script src="assets/js/app.js"></script>
 
 </body>
 
