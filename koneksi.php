@@ -18,20 +18,27 @@ function query($query)
 //cara buat tambah data
 function tambah($data)
 {
+    include"phpqrcode/qrlib.php";
     global $conn;
     $nama = htmlspecialchars($data["id_nama"]);
     $jk = htmlspecialchars($data["jk"]);
     $jabatan = htmlspecialchars($data["jabatan"]);
     $alamat = htmlspecialchars($data["alamat"]);
     $notlp = htmlspecialchars($data["notlp"]);
+     $keperluan = htmlspecialchars($data["keperluan"]);
     $id_tglb = htmlspecialchars($data["id_tglb"]);
-    $keperluan = htmlspecialchars($data["keperluan"]);
-
-
+   
+    $folderTemp = "el/";
+    $dio = $nama;
+    $elton = $nama.".png";
+    $qual = 'H';
+    $ukuran = 6;
+    $padding = 0;
+    QRCode :: png($dio, $folderTemp.$elton,$qual,$ukuran,$padding);
     // query buat tambah data
     $query = "INSERT INTO tbbuku
             VALUES
-                ('','$nama','$jk','$jabatan','$alamat','$notlp','$keperluan','$id_tglb') 
+                ('','$dio','$jk','$jabatan','$alamat','$notlp','$keperluan','$elton','$id_tglb') 
             ";
     mysqli_query($conn, $query);
 
