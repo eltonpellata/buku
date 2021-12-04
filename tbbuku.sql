@@ -35,6 +35,7 @@ CREATE TABLE `tbbuku` (
   `alamat` varchar(100) NOT NULL,
   `notlp` varchar(15) NOT NULL,
   `keperluan` text NOT NULL,
+  `qrcode` text NOT NULL,
   `id_tglb` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,7 +43,7 @@ CREATE TABLE `tbbuku` (
 -- Dumping data for table `tbbuku`
 --
 
-INSERT INTO `tbbuku` (`id`, `id_nama`, `jk`, `jabatan`, `alamat`, `notlp`, `keperluan`, `id_tglb`) VALUES
+INSERT INTO `tbbuku` (`id`, `id_nama`, `jk`, `jabatan`, `alamat`, `notlp`, `keperluan`, `qrcode`, `id_tglb`) VALUES
 (1, 'apa saja', 'laki-laki', 'apa saja', 'apa saja', '21381', 'ksmkdmskldmskls\r\nskfds fdsf\r\nsdfkds\r\n fodsnfdslFdsfsd', '2021-12-07');
 
 --

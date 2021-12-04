@@ -236,6 +236,7 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                 <th class="cell">alamat</th>
                                                 <th class="cell">No.Telpon</th>
                                                 <th class="cell">Keperluan</th>
+                                                <th class="cell">Qr Code</th>
                                                 <th class="cell">Tgl/Berkunjung</th>
                                                 <th class="cell">Action</th>
                                             </tr>
@@ -251,6 +252,7 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                     <td class="cell"><?= $row["alamat"]; ?></td>
                                                     <td class="cell"><?= $row["notlp"]; ?></td>
                                                     <td class="cell"><?= $row["keperluan"]; ?></td>
+                                                    <td class="cell"><img src="el/<?= $row["qrcode"]; ?>" width="50"></td>
                                                     <td class="cell"><?= $row["id_tglb"]; ?></td>
                                                     <td class="cell">
                                                         <!-- detail -->
@@ -272,6 +274,11 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                                             <h3 class="profile-username text-center">nama : <?= $row["id_nama"]; ?> </h3>
 
                                                                             <p class="text-muted text-center">jenis kelamin : <?= $row["jk"]; ?></p>
+
+                                                                            <p class="text-muted text-center">
+                                                                                <a href="el/<?= $row["qrcode"]; ?> "download="<?= $row["qrcode"]; ?>">
+                                                                        <img src="el/<?= $row["qrcode"]; ?>"></p>
+                                                                                </a>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -280,10 +287,11 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');" class="btn btn-danger"><i style="color:white;" class="fas fa-trash"></i></a>
+                                                            </div>
                                                             <!-- <a href="detail.php?id<?= $row["id"]; ?>" class="btn btn-info  data-bs-toggle=" modal" data-bs-target="#detail"><i style="color:white;" class="fas fa-eye"></i></a> -->
 
                                                             <!-- hapus -->
-                                                            <a href=href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');" class="btn btn-danger"><i style="color:white;" class="fas fa-trash"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>

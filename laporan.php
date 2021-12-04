@@ -251,7 +251,7 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                     <td class="cell"><?= $row["id_tglb"]; ?></td>
                                                     <td class="cell">
                                                         <a href="detail.php" class="btn btn-success"><i style="color:white;" class="bi bi-file-earmark-arrow-down-fill"></i></a>
-                                                        <a href=href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');" class="btn btn-danger"><i style="color:white;" class="fas fa-trash"></i></a>
+                                                        <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');" class="btn btn-danger"><i style="color:white;" class="fas fa-trash"></i></a>
                                                 </tr>
                                                 <?php $i++; ?>
                                             <?php endforeach; ?>
