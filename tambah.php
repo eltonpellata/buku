@@ -251,9 +251,9 @@ if (isset($_POST["submit"])) {
                             <label for="Tanggal berkunjung" class="form-label">Tanggal Berkunjung</label>
                             <input type="date" name="id_tglb" class="form-control" id="Tanggal berkunjung" required>
                         </div>
-                        <div class="col">
-                            <label for="Keperluan" class="form-label">Keperluan</label>
-                            <textarea class="form-control" name="keperluan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" name="keperluan" id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Comments</label>
                         </div>
                         <button type="submit" name="submit" class="btn btn-success btn-lg text-white">Submit</button>
                         <button type="reset" class="btn btn-secondary btn-lg">Reset</button>

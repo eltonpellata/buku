@@ -216,6 +216,11 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
 
                 <!--//app-card-->
 
+                <!-- Button trigger modal -->
+
+
+
+
                 <div class="tab-content" id="orders-table-tab-content">
                     <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                         <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -248,8 +253,38 @@ $daftar = query("SELECT * FROM tbbuku ORDER BY id DESC");
                                                     <td class="cell"><?= $row["keperluan"]; ?></td>
                                                     <td class="cell"><?= $row["id_tglb"]; ?></td>
                                                     <td class="cell">
-                                                        <a href="#"><i class="bi bi-search"></i></a> |
-                                                        <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');"><i class="bi bi-trash-fill"></i></a>
+                                                        <!-- detail -->
+                                                        <div class="btn-group btn-group-md">
+                                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detail<?= $row["id"]; ?>">
+                                                                <i style="color:white;" class="fas fa-eye"></i>
+                                                            </a>
+                                                            <!-- akir detail -->
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="detail<?= $row["id"]; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <h3 class="profile-username text-center">nama : <?= $row["id_nama"]; ?> </h3>
+
+                                                                            <p class="text-muted text-center">jenis kelamin : <?= $row["jk"]; ?></p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary">Understood</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <a href="detail.php?id<?= $row["id"]; ?>" class="btn btn-info  data-bs-toggle=" modal" data-bs-target="#detail"><i style="color:white;" class="fas fa-eye"></i></a> -->
+
+                                                            <!-- hapus -->
+                                                            <a href=href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin Dihapus Datanya?');" class="btn btn-danger"><i style="color:white;" class="fas fa-trash"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>
