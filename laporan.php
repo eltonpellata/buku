@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION["login"])){
+  header("Location : user.php");
+  exit;
+}
 //koneksi data base yang beraada di file koneksi
 require 'koneksi.php';
 //munculkan data base dengan fungsion yang ad di file koneksi
