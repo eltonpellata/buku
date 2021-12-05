@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //koneksi data base yang beraada di file koneksi
 require 'koneksi.php';
 // tekan tombol submit apakah berhasil
@@ -96,7 +98,7 @@ require 'koneksi.php';
                             <!--//form-group-->
                             <button type="submit" name="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Submit</button>
 
-                            <div class="auth-option text-center pt-2">login for admin <a class="text-link" href="index.php">here</a>.</div>
+                            <div class="auth-option text-center pt-2">login for admin <a class="text-link" href="login.php">here</a>.</div>
                             <!-- <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Tambah Data <button> -->
                         </form>
 

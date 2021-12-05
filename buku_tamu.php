@@ -1,4 +1,5 @@
 <?php
+session_start();
 //koneksi data base yang beraada di file koneksi
 require 'koneksi.php';
 //munculkan data base dengan fungsion yang ad di file koneksi
